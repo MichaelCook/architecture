@@ -100,6 +100,7 @@ int main()
   SHOW_TYPE(float);
   SHOW_TYPE(double);
   SHOW_TYPE(long double);
+  printf("sizeof(size_t)=%zu\n", sizeof(size_t));
 
   printf("FLT_ROUNDS %d\n", FLT_ROUNDS);
   printf("FLT_RADIX %d\n", FLT_RADIX);
