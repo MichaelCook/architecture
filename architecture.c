@@ -73,6 +73,8 @@ int main()
   uint64_t q = 0x1234567890abcdef;
   show_endian("uint64_t", &q, sizeof(q), q);
 
+  /* We assume the stack grows either up or down.  The C standards don't
+     require either, strictly speaking. */
   printf("stack grows %s\n", stack_grows_down() ?
          "down (to lower addresses)" : "up (to higher addresses)");
 
