@@ -85,7 +85,7 @@ int main()
   }
   #define SHOW_TYPE(T) do {                                             \
     struct { char a; T b; } x;                                          \
-    printf("%s is %zd bits with %td-byte alignment\n",                  \
+    printf("%s is %zu bits with %td-byte alignment\n",                  \
            #T, sizeof(T) * bits_per_char, (char*) &x.b - &x.a);         \
   } while (0)
   SHOW_TYPE(char);
