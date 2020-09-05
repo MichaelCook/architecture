@@ -1,7 +1,7 @@
 /*
   Show information about the computer processor architecture.
 
-  gcc -std=c99 -Wall -Werror architecture.c && ./a.out
+  gcc -O0 -std=c99 -Wall -Werror architecture.c && ./a.out
 */
 
 /*
@@ -45,13 +45,18 @@ static void show_endian(const char *label, void *p, size_t n, uint8_t lsb)
   printf(")\n");
 }
 
+/* The noinline and printf are intended to suppress the compiler's optimizer.
+   Otherwise, the optimizer tends to break the "stack grows" check
+   (which depends on undefined behavior) */
+__attribute__ ((noinline))
 static bool stack_grows_down_helper(int *p)
 {
   int i;
-  //printf("from %p to %p added %td\n", p, &i, &i - p);
+  printf("(%s: from %p to %p added %td)\n", __func__, p, &i, &i - p);
   return &i < p;
 }
 
+__attribute__ ((noinline))
 static bool stack_grows_down(void)
 {
   int i;
